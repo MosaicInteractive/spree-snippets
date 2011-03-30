@@ -5,14 +5,36 @@
 	}
 </style>
 
-<%= javascript_tag do -%>
-  var _button = new YAHOO.widget.Button('toggleEditor');
-  _button.addClass('toggleEditor');
-  var state = 'on';
-  var myEditor = window['snippet_content_editor'];
-  myEditor.show();
+<table class="admin-report" width="545">
+  <tr>
+    <td valign="top"><%=t("snippets_slug")%>:</td>
+    <td><%= f.text_field :slug, {"style" => "width: 745px"} %></td>
+  </tr>
+  <tr>
+		<td colspan="2">
+      <%= f.text_area :content, {"style" => "width:100%"} %>
+		</td>
+  </tr>
+</table>
 
-  _button.on('click', function(ev) {
+<div class="snippet-form snippet-form-bottom-buttons">
+	<div class="button" id="toggleEditor">
+		<a href="#"><%= t("editor.toggle_editor") %></a>
+	</div>
+</div>
+
+<%= javascript_tag do -%>
+  (function() {
+    var Dom = YAHOO.util.Dom,
+    Event = YAHOO.util.Event;
+
+    var _button = new YAHOO.widget.Button('toggleEditor');
+    _button.addClass('toggleEditor');
+    var state = 'on';
+    var myEditor = window['snippet_content_editor'];
+    myEditor.show();
+
+    _button.on('click', function(ev) {
         Event.stopEvent(ev);
         if (state == 'on') {
             YAHOO.log('state is on, so turn off', 'info', 'example');
@@ -41,12 +63,15 @@
             YAHOO.log('Set Editor container to position: static, top: 0, left: 0. Set textarea to hidden', 'info', 'example');
 
             var fc = myEditor.get('element').previousSibling,
-                el = myEditor.get('element');
+            el = myEditor.get('element');
 
             Dom.setStyle(fc, 'position', 'static');
             Dom.setStyle(fc, 'top', '0');
             Dom.setStyle(fc, 'left', '0');
             Dom.setStyle(el, 'visibility', 'hidden');
+            Dom.setStyle(el, 'top', '-9999px');
+            Dom.setStyle(el, 'left', '-9999px');
+            Dom.setStyle(el, 'position', 'absolute');
             Dom.setStyle(el, 'top', '-9999px');
             Dom.setStyle(el, 'left', '-9999px');
             Dom.setStyle(el, 'position', 'absolute');
@@ -58,22 +83,3 @@
         }
     });
 <% end -%>
-
-<table class="admin-report" width="545">
-  <tr>
-    <td valign="top"><%=t("snippets_slug")%>:</td>
-    <td><%= f.text_field :slug, {"style" => "width: 745px"} %></td>
-  </tr>
-  <tr>
-		<td colspan="2">
-      <%= f.text_area :content, {"style" => "width:100%"} %>
-		</td>
-  </tr>
-</table>
-
-<div class="snippet-form snippet-form-bottom-buttons">
-	<div class="button" id="toggleEditor">
-		<a href="#"><%= t("editor.toggle_editor") %></a>
-	</div>
-</div>
-
