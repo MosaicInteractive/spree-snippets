@@ -66,18 +66,14 @@
   </tr>
   <tr>
 		<td colspan="2">
-      <%= f.text_area :content, {"style => "width:100%"} %>
+      <%= f.text_area :content, {"style" => "width:100%"} %>
 		</td>
   </tr>
 </table>
 
 <div class="snippet-form snippet-form-bottom-buttons">
-	<div class="button" id="snippet_content_switch_simple">
-		<a href="#"><%= t("editor.switch_simple") %></a>
-	</div>
-	<div class="button" id="snippet_content_switch_rich" style="display: none;">
-		<a href="#"><%= t("editor.switch_rich") %></a>
+	<div class="button" id="toggleEditor">
+		<a href="#"><%= t("editor.toggle_editor") %></a>
 	</div>
 </div>
 
-<%#= rich_editor(:id => 'snippet_content', :object => @snippet) %>

@@ -7,5 +7,4 @@ en:
   new_snippet: "New snippet"
   editing_snippet: "Editing snippet"
   editor:
-    switch_simple: "Switch to simple view"
-    swtich_rich: "Switch to rich text view"
+    toggle_editor: "Toggle Editor"
