@@ -6,3 +6,6 @@ en-GB:
   snippets_content: "Content"
   new_snippet: "New snippet"
   editing_snippet: "Editing snippet"
+  editor:
+    switch_simple: "Switch to simple view"
+    swtich_rich: "Switch to rich text view"
