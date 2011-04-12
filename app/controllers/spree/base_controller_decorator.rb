@@ -15,7 +15,13 @@ ActionController::Base.class_eval do
     else
       raise "Unable to handle snippet '#{snippet}'"
     end 
-    raise "Snippet '#{snippet}' not found" if @snippet.nil?
+    # Log missing snippet in case snippets are dynamic
+    # Revert to next line for fine tuning
+    #raise "Snippet '#{snippet}' not found" if @snippet.nil?
+    if @snippet.nil?
+      logger.error "Snippet '#{snippet}' not found"
+      return ''
+    end
     template = ERB.new File.read(File.expand_path(snippet_wrapper_absolute_path))
     raw template.result(binding)
   end
