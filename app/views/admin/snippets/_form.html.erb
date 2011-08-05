@@ -1,9 +1,4 @@
-<style type="text/css" media="screen">
-	.snippet-form-bottom-buttons {
-		margin-left: 5px;
-		margin-bottom: 20px;
-	}
-</style>
+<%= stylesheet_link_tag 'formtastic', 'formtastic_changes' %>
 
 <table class="admin-report" width="545">
   <tr>
@@ -22,3 +17,7 @@
 		<%= t("editor.toggle_editor") %>
 	</button>
 </div>
+<%#= f.inputs do %>
+  <%#= f.input :slug %>
+  <%#= f.input :content, :as => :text %>
+<%# end %>
