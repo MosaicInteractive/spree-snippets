@@ -1,5 +1,4 @@
 ActionController::Base.class_eval do
-  include ActionView::Helpers::RawOutputHelper
 
   helper_method :render_snippet
 
@@ -28,7 +27,7 @@ ActionController::Base.class_eval do
     end
 
     template = ERB.new File.read(File.expand_path(snippet_wrapper_absolute_path))
-    raw template.result(binding)
+    template.result(binding).to_s.html_safe
   end
 
   private
